@@ -2,6 +2,16 @@
 
 ## Link: [desk.gl Visualization](https://deck.gl/)
 
+## Command that I have used
+### Angular
+- new project: `ng new [project-name]`
+- run (env-dev): `ng serve`
+
+### desk.gl
+- install: `npm install deck.gl`
+
+## Angular auto generate
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
 ## Development server
