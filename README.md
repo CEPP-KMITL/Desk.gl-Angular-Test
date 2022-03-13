@@ -1,13 +1,16 @@
-# DeskGlTest
+# DeckGlTest
 
-## Link: [desk.gl Visualization](https://deck.gl/)
+## Link: [deck.gl Visualization](https://deck.gl/)
+## Ref:
+https://github.com/gndplayground/angular-deckgl
 
 ## Command that I have used
 ### Angular
 - new project: `ng new [project-name]`
 - run (env-dev): `ng serve`
+- component: `ng generate component [component-name]`
 
-### desk.gl
+### deck.gl
 - install: `npm install deck.gl`
 
 ## Angular auto generate
