@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // @ts-ignore
 import { Deck } from '@deck.gl/core';
 // @ts-ignore
@@ -19,32 +19,26 @@ import { getSafePropertyAccessString } from '@angular/compiler';
   templateUrl: './deck-gl.component.html',
   styleUrls: ['./deck-gl.component.css']
 })
-export class DeckGlComponent implements OnInit, OnDestroy {
+export class DeckGlComponent implements OnInit {
 
-  // london
-  // INITIAL_VIEW_STATE = {
-  //   latitude: 37.8,
-  //   longitude: -122.45,
-  //   zoom: 13
-  // };
-
-  COUNTRIES = 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_scale_rank.geojson'; //eslint-disable-line
-  AIR_PORTS = 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson';
+  //COUNTRIES = 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_scale_rank.geojson'; //eslint-disable-line
+  //AIR_PORTS = 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson';
   INCIDENT_TH = 'https://event.longdo.com/feed/json';
 
   model = {
     option: 1
   }
 
-  deckgl: Deck;
+  //eckgl: Deck;
   basemap: GeoJsonLayer;
   scatter: ScatterplotLayer;
   heatmap: HeatmapLayer;
 
+  testState = 1;
+
   INITIAL_VIEW_STATE = {
     latitude: 13.756331,
     longitude: 100.501762, // BKK
-    //zoom: 6,
     zoom: 7.5
     // bearing: 0, // rotate
     // pitch: 0 // blending
@@ -69,35 +63,17 @@ export class DeckGlComponent implements OnInit, OnDestroy {
         zoom: 8
       });
       this.overlay = new DeckOverlay()
-      this.changeOption();
+      this.updateLayer();
       this.overlay.setMap(this.map);
     })
   }
 
-  ngOnDestroy(): void {
-    console.log("ngOnDestroy");
-    // this.deckgl.setProps({
-    //   layers: []
-    // });
-  }
-
-  public initial() {
-    // this.basemap = this.basemapBasicLayer();
-
-    console.log("init");
-    this.deckgl.setProps({
-      layers: []
-    });
-  }
-
   public visibleState() {
-    console.log("be hide");
-    this.basemap.setProps({
-      visible: 0
-    });
+    this.testState = this.testState ? 0 : 1;
+    this.updateLayer();
   }
 
-  public changeOption() {
+  public updateLayer() {
     console.log("change option");
     if (this.model.option == 0)
       this.overlay.setProps({
@@ -117,26 +93,6 @@ export class DeckGlComponent implements OnInit, OnDestroy {
     }
   }
 
-  // public deck = () => new Deck({
-  //   initialViewState: this.INITIAL_VIEW_STATE,
-  //   controller: true,
-  // });
-
-  // public basemapBasicLayer = () => {
-  //   return new GeoJsonLayer({
-  //     id: 'base-map',
-  //     data: this.COUNTRIES,
-  //     // Styles
-  //     stroked: true,
-  //     filled: true,
-  //     lineWidthMinPixels: 2,
-  //     opacity: 0.4,
-  //     getLineDashArray: [3, 3],
-  //     getLineColor: [60, 60, 60],
-  //     getFillColor: [200, 200, 200],
-  //   })
-  // }
-
   public scatterLayer = () => {
     return new ScatterplotLayer({
       id: 'scatter',
@@ -148,7 +104,8 @@ export class DeckGlComponent implements OnInit, OnDestroy {
       radiusMinPixels: 4,
       radiusMaxPixels: 12,
       getPosition: (d: any) => [parseFloat(d.longitude), parseFloat(d.latitude)],
-      getColor: [255, 0, 0]
+      getColor: [255, 0, 0],
+      visible: this.testState
     })
   }
 
@@ -161,15 +118,6 @@ export class DeckGlComponent implements OnInit, OnDestroy {
       radiusPixels: 60,
       debounceTimeout: 20,
     })
-  }
-
-  public getClick() {
-    console.log(typeof (this.model.option))
-    console.log(this.model.option)
-  }
-  public clickDelete() {
-    console.log("delete something")
-    delete this.deckgl;
   }
 
 }

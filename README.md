@@ -4,6 +4,24 @@
 ## Ref:
 https://github.com/gndplayground/angular-deckgl
 
+# Prototype
+## V1.0 (Lastest)
+- Use Google Map as Basemap
+- Use Mock data from Longdo Incident Thailand
+- Can select Mode Plot layers
+- Can Invisible Layer (for make multiple layer)
+### Scatter Plot
+![V1.0-scatter](img/v1.0-scatter.png)
+### Heatmap
+![V1.0-scatter](img/v1.0-heatmap.png)
+
+## V2.0 (Next Road Map)
+- Modify Layer with Range input
+- Select 4 zones of Thailand
+
+## V3.0
+- Select data to visualize (type of data)
+
 ## Command that I have used
 ### Angular
 - new project: `ng new [project-name]`
